@@ -3,17 +3,17 @@ import { supabaseClient } from "./supabaseClient";
 
 export const getFoodItems = async ({ userId, token }) => {
   const supabase = await supabaseClient(token);
-  const { data: todos, error } = await supabase
+  const { data: foods, error } = await supabase
     .from("foods")
     .select("*")
     .eq("user_id", userId);
 
   if (error) {
-    console.error("Error fetching todos:", error.message);
+    console.error("Error fetching foods:", error.message);
     return [];
   }
 
-  return todos;
+  return foods;
 };
 
 export const postFoodItem = async ({ userId, token, data }) => {
